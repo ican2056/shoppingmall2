@@ -1,0 +1,48 @@
+#顺便介绍下因为springboot集成了Tomcat和Jetty，默认使用Tomcat作为应用容器，开发者只需要将工程打成jar包直接丢到服务器上就可以执行了，
+#不需要再单独部署到was、jboss、tomcat这些应用服务器上
+#注意值前面一定有一个空格
+server:
+  #配置发布端口号
+  port: 8080
+  session-timeout: 30
+  tomcat.max-threads: 10
+  tomcat.uri-encoding: UTF-8
+  servlet:
+    #配置发布时的路径
+    context-path: /
+    #配置热部署，使修改HTML的自动同步
+    init-parameters.development: true
+
+spring:
+  datasource:
+    url : jdbc:mysql://localhost:3306/shoppingmall
+    username : root
+    password : a
+    driverClassName : com.mysql.jdbc.Driver
+  profiles:
+    #配置当前运行环境，这个值与application-*.yml等配置文件有关，application-dev.yml对应dev，application-test.yml就对应test，自定义的
+    active: dev
+  thymeleaf:
+    #页面热加载
+    cache: false
+    enabled: false
+  mvc:
+    view:
+      #页面默认前缀目录
+      prefix: /
+      #页面默认后缀目录
+      suffix: .html
+
+mybatis:
+  #起别名。可省略写mybatis的xml中的resultType的全路径
+  type-aliases-package: indi.goddess.shoppingmall2.beans
+  #Mybatis扫描(配置xml模式使用)
+  mapper-locations: classpath*:mapper/*/*.xml
+
+security:
+
+
+appid: wx8397f8696b538317
+partner: 1473426802
+partnerkey: 8A627A4578ACE384017C997F12D68B23
+notifyurl: http://a31ef7db.ngrok.io/WeChatPay/WeChatPayNotify

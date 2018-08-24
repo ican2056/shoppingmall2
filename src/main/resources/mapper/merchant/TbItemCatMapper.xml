@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pinyougou.mapper.TbItemCatMapper" >
+
+
+    <resultMap id="BaseResultMap" type="TbItemCat" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <!--查询所有tb_item_cat商品类别-->
+    <select id="findAll" resultMap="BaseResultMap" >
+        select * from tb_item_cat
+    </select>
+
+    <!--插入商品类别-->
+    <insert id="insert" parameterType="TbItemCat" >
+        insert into tb_item_cat (id, parent_id, name,
+        type_id)
+        values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+        #{typeId,jdbcType=BIGINT})
+    </insert>
+
+    <!--更新-->
+    <update id="updateByPrimaryKeySelective" parameterType="TbItemCat" >
+        update tb_item_cat
+        <set >
+            <if test="parentId != null" >
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="typeId != null" >
+                type_id = #{typeId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--根据id查询-->
+    <select id="findOne" parameterType="Long" resultType="TbItemCat">
+        select * from tb_item_cat where id=#{id}
+    </select>
+
+    <!--根据父类id查询-->
+    <select id="findByParentId" parameterType="Long" resultType="TbItemCat">
+        select * from tb_item_cat where parent_id=#{parentId}
+    </select>
+
+    <!--删除多条-->
+    <delete id="deleteMany" parameterType="Long[]">
+        delete from tb_item_cat where id in
+        <foreach collection="array"  item="item" open="(" separator="," close=")">
+                            #{item}
+        </foreach>
+    </delete>
+
+    <!--分页-->
+    <select id="findPage" parameterType="java.util.Map">
+        SELECT * from tb_item_cat limit #{pageNum},#{pageSize}
+    </select>
+
+</mapper>

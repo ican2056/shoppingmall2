@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goddess.bean.TbUserMapper" >
+  <resultMap id="BaseResultMap" type="TbUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="source_type" property="sourceType" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="account_balance" property="accountBalance" jdbcType="DECIMAL" />
+    <result column="is_mobile_check" property="isMobileCheck" jdbcType="VARCHAR" />
+    <result column="is_email_check" property="isEmailCheck" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="user_level" property="userLevel" jdbcType="INTEGER" />
+    <result column="points" property="points" jdbcType="INTEGER" />
+    <result column="experience_value" property="experienceValue" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <insert id="add" parameterType="TbUser">
+   insert into tb_user (id, username, password,
+      phone, email, created,
+      updated, source_type, nick_name,
+      name, status, head_pic,
+      qq, account_balance, is_mobile_check,
+      is_email_check, sex, user_level,
+      points, experience_value, birthday,
+      last_login_time)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP},
+      #{updated,jdbcType=TIMESTAMP}, #{sourceType,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR},
+      #{qq,jdbcType=VARCHAR}, #{accountBalance,jdbcType=DECIMAL}, #{isMobileCheck,jdbcType=VARCHAR},
+      #{isEmailCheck,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{userLevel,jdbcType=INTEGER},
+      #{points,jdbcType=INTEGER}, #{experienceValue,jdbcType=INTEGER}, #{birthday,jdbcType=TIMESTAMP},
+      #{lastLoginTime,jdbcType=TIMESTAMP})
+  </insert>
+
+    <!-- 根据用户名和密码查询用户  -->
+    <select id="find" parameterType="TbUser" resultType="TbUser">
+            select * from tb_user where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+        </select>
+</mapper>
