@@ -79,12 +79,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/manager/login.html")
 				.loginProcessingUrl("/login/form")
 				.defaultSuccessUrl("/manager/admin/index.html", true)
-				.permitAll()
 				.and()
 				.logout()
 				.logoutUrl("/manager/logout")//设置登出请求
-				.permitAll()
-				.and().csrf().disable()
+				.and()
+				.csrf().disable()     //关闭csrf
 				.headers().frameOptions().sameOrigin();//spring security安全框架设置了默认的X-Frame-Options为DENY,更改spring security配置为
 		//http.headers().frameOptions().sameOrigin();参数如下
 		/*X-Frame-Options 有三个值:
