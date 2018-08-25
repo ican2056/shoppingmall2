@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/brand")
+@RequestMapping("/manager/brand")
 public class BrandController {
     @Resource(name = "brandServiceImpl")
     private BrandService brandService;

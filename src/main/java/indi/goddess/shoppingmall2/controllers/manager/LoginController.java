@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("manager")
+@RequestMapping("/manager/user")
 public class LoginController {
 
 	@RequestMapping("/login/name")
