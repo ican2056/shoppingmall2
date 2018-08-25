@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/merchant/")
+@RequestMapping("/merchant/itemcat/")
 public class ItemCatController {
     @Resource(name="itemCatServiceImpl")
     private ItemCatService itemCatService;

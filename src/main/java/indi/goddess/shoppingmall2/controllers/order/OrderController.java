@@ -17,10 +17,10 @@ public class OrderController {
 	OrderService orderService;
 
 	@RequestMapping("findAll")
-	@ResponseBody
+	//@ResponseBody
 	public String findAll(){
 		List<TbOrder> all = orderService.findAll();
-		//System.out.println(all.get(3));
-		return all.toString();
+		System.out.println(all.get(3));
+		return "foreground/register";
 	}
 }

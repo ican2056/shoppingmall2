@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class TbUserDaoImpl implements TbUserDao {
-	private final String MAPPERPATH = "com.goddess.bean.";
+	private final String MAPPERPATH = "com.goddess.beans.";
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -26,13 +26,15 @@ public class TbUserDaoImpl implements TbUserDao {
 
 
 	@Override
-	public int deleteByPrimaryKey(Long id) {
-		return 0;
+	public int  deleteByPrimaryKey(Long id,String sqlId) {
+		return  sqlSession.delete("com.goddess.beans.TbUserMapper" +sqlId,id);
+
 	}
 
 	@Override
 	public int insert(TbUser record, String sqlId) {
-		return sqlSession.insert(MAPPERPATH + record.getClass().getSimpleName() + "Mapper." + sqlId, record);
+		int result=  sqlSession.insert(MAPPERPATH + record.getClass().getSimpleName() + "Mapper." + sqlId, record);
+		return result;
 	}
 
 	@Override
@@ -42,14 +44,16 @@ public class TbUserDaoImpl implements TbUserDao {
 
 
 	@Override
-	public TbUser selectByPrimaryKey(Long id) {
-		return null;
+	public TbUser selectByPrimaryKey(Long id,String sqlId ) {
+		TbUser u  = sqlSession.selectOne("com.goddess.beans.TbUserMapper" +sqlId,id);
+		return u;
 	}
 
 
 	@Override
-	public int updateByPrimaryKeySelective(TbUser record) {
-		return 0;
+	public int updateByPrimaryKeySelective(TbUser record, String sqlId) {
+		int result= sqlSession.update(MAPPERPATH+record.getClass().getSimpleName()+"Mapper." +sqlId,record);
+		return result;
 	}
 
 	@Override

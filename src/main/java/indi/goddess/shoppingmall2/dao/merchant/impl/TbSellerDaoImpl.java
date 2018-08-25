@@ -4,6 +4,7 @@ import indi.goddess.shoppingmall2.beans.TbSeller;
 import indi.goddess.shoppingmall2.dao.merchant.TbSellerDao;
 import indi.goddess.shoppingmall2.entity.PageResult;
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -57,7 +58,8 @@ public class TbSellerDaoImpl implements TbSellerDao {
 
     @Override
     public TbSeller login(TbSeller seller) {
-        return sqlSession.selectOne("com.pinyougou.mapper.TbSellerMapper.loginSeller",seller);
+        TbSeller o = sqlSession.selectOne("com.pinyougou.mapper.TbSellerMapper.loginSeller", seller);
+        return o;
     }
 
 

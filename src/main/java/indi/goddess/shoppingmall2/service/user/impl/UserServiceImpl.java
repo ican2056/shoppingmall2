@@ -38,14 +38,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean add(TbUser user) {
-        tbUserDao.insert(user,"add");
-        return true;
+    public int add(TbUser user) {
+        int result=tbUserDao.insert(user,"add");
+        return result;
     }
 
     @Override
-    public void update(TbUser user) {
-
+    public int update(TbUser user) {
+        int result=tbUserDao.updateByPrimaryKeySelective(user,"updateByExample");
+        return result;
     }
 
     @Override

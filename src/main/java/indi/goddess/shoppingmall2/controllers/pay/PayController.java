@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 //@Api(value = "/test",tags = "TestSwaggerController模块")
 @RestController
-@RequestMapping("/pay/")
+@RequestMapping("/foreground/pay/")
 public class PayController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class PayController {
     //              value:方法描述      notes:方法提示内容
     //@ApiOperation(value = "用户支付",notes = "方法的提示：用户支付")
     // path, query, body, header, form，表明数据来自哪里
-    @RequestMapping("createNative")
+    @RequestMapping("createNative.do")
     public Map createNative(){
         IdWorker idWorker = new IdWorker();
         //System.out.println(String.valueOf(idWorker.nextId())+">>>>>>>>>");

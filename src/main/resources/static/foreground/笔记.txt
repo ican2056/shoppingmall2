@@ -1,0 +1,12 @@
+index.html 首页
+search.html 搜索
+item.html 商品详情页面
+cart.html 购物车页面
+getOrderInfo.html 结算页面
+pay.html 支付页面
+paysuccess.html支付成功页面
+home-index.html 个人信息页面，包含的信息有我的收藏，我的足迹，我的订单，待支付，已经支付。。。
+login.html登陆页面
+register.html注册页面
+seckill-index.html 秒杀页面
+shop.html商家主页（单独某一个商家的主页，即一个店铺主页）

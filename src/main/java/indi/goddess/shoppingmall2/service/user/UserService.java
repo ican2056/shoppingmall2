@@ -37,13 +37,13 @@ public interface UserService {
 	/**
 	 * 增加
 	*/
-	public boolean add(TbUser user);
+	public int add(TbUser user);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbUser user);
+	public int update(TbUser user);
 	
 
 	/**

@@ -197,10 +197,8 @@
         where seller_id = #{sellerId,jdbcType=VARCHAR}
     </select>
 
-    <select id="loginSeller" parameterType="TbSeller" resultMap="BaseResultMap">
-        SELECT * from tb_seller where
-          nick_name= #{nickName}
-         and password=#{password}
+    <select id="loginSeller" parameterType="TbSeller" resultType="TbSeller">
+        SELECT * from tb_seller where nick_name=#{nickName} and password=#{password}
     </select>
     
 

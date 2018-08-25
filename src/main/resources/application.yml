@@ -15,7 +15,7 @@ server:
 
 spring:
   datasource:
-    url : jdbc:mysql://localhost:3306/shoppingmall
+    url : jdbc:mysql://localhost:3306/shoppingmall?useSSL=false&useUnicode=true&characterEncoding=utf8
     username : root
     password : a
     driverClassName : com.mysql.jdbc.Driver
@@ -25,13 +25,15 @@ spring:
   thymeleaf:
     #页面热加载
     cache: false
-    enabled: false
-  mvc:
-    view:
-      #页面默认前缀目录
-      prefix: /
-      #页面默认后缀目录
-      suffix: .html
+    #开启thymeleaf
+    enabled: true
+    #下面两个都是默认配置，可以不加的
+    prefix: classpath:/templates/
+    suffix: .html
+
+logging:
+  level:
+     com.pinyougou.mapper: debug
 
 mybatis:
   #起别名。可省略写mybatis的xml中的resultType的全路径
