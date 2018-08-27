@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goddess.mapper.TbSpecificationMapper" >
+    <resultMap id="BaseResultMap" type="indi.goddess.shoppingmall2.beans.TbSpecification" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="spec_name" property="specName" jdbcType="VARCHAR" />
+    </resultMap>
+    <!-- 查询所有规格 -->
+    <select id="selectAllSpecification" parameterType="indi.goddess.shoppingmall2.beans.TbSpecification" resultMap="BaseResultMap">
+        select * from tb_specification
+
+    </select>
+
+</mapper>

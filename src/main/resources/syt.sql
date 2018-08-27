@@ -51,11 +51,56 @@ CREATE TABLE `tb_item_cat` (
   KEY `parent_id` (`parent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1205 DEFAULT CHARSET=utf8 COMMENT='商品类目';
 
+select id,name from tb_item_cat;
+
+select name from tb_item_cat where id in(
+  select category1_id,category2_id,category3_id from tb_goods where id=149187842867958
+);
 
 
 
-
-select parent_id from tb_item_cat GROUP BY parent_id ;
-select name from tb_item_cat WHERE id=1;
+select * from tb_item_cat where parent_id =0;
 select database();
 USE shoppingmall;
+
+
+# 商品表
+DROP TABLE IF EXISTS `tb_goods`;
+
+CREATE TABLE `tb_goods` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `seller_id` varchar(20) DEFAULT NULL COMMENT '商家ID',
+  `goods_name` varchar(100) DEFAULT NULL COMMENT 'SPU名',
+  `default_item_id` bigint(20) DEFAULT NULL COMMENT '默认SKU',
+  `audit_status` varchar(2) DEFAULT NULL COMMENT '状态',
+  `is_marketable` varchar(1) DEFAULT NULL COMMENT '是否上架',
+  `brand_id` bigint(10) DEFAULT NULL COMMENT '品牌',
+  `caption` varchar(100) DEFAULT NULL COMMENT '副标题',
+  `category1_id` bigint(20) DEFAULT NULL COMMENT '一级类目',
+  `category2_id` bigint(10) DEFAULT NULL COMMENT '二级类目',
+  `category3_id` bigint(10) DEFAULT NULL COMMENT '三级类目',
+  `small_pic` varchar(150) DEFAULT NULL COMMENT '小图',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '商城价',
+  `type_template_id` bigint(20) DEFAULT NULL COMMENT '分类模板ID',
+  `is_enable_spec` varchar(1) DEFAULT NULL COMMENT '是否启用规格',
+  `is_delete` varchar(1) DEFAULT NULL COMMENT '是否删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=149187842867962 DEFAULT CHARSET=utf8;
+insert  into `tb_goods`(`id`,`seller_id`,`goods_name`,`default_item_id`,`audit_status`,`is_marketable`,`brand_id`,`caption`,`category1_id`,`category2_id`,`category3_id`,`small_pic`,`price`,`type_template_id`,`is_enable_spec`,`is_delete`) values (149187842867912,'yijia','华为手机',NULL,'1',NULL,NULL,'打折促销中',NULL,NULL,NULL,NULL,'3020.00',NULL,NULL,NULL);
+insert  into `tb_goods`(`id`,`seller_id`,`goods_name`,`default_item_id`,`audit_status`,`is_marketable`,`brand_id`,`caption`,`category1_id`,`category2_id`,`category3_id`,`small_pic`,`price`,`type_template_id`,`is_enable_spec`,`is_delete`) values (149187842867913,'yijia','华为手机',NULL,'1',NULL,NULL,'打折促销中',NULL,NULL,NULL,NULL,'3020.00',NULL,NULL,NULL);
+
+DROP TABLE IF EXISTS `tb_goods_desc`;
+SELECT *
+FROM tb_goods;
+
+
+CREATE TABLE `tb_goods_desc` (
+  `goods_id` bigint(20) NOT NULL COMMENT 'SPU_ID',
+  `introduction` varchar(3000) DEFAULT NULL COMMENT '描述',
+  `specification_items` varchar(3000) DEFAULT NULL COMMENT '规格结果集，所有规格，包含isSelected',
+  `custom_attribute_items` varchar(3000) DEFAULT NULL COMMENT '自定义属性（参数结果）',
+  `item_images` varchar(3000) DEFAULT NULL,
+  `package_list` varchar(3000) DEFAULT NULL COMMENT '包装列表',
+  `sale_service` varchar(3000) DEFAULT NULL COMMENT '售后服务',
+  PRIMARY KEY (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

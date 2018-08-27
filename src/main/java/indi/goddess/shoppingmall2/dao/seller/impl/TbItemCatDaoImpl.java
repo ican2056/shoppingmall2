@@ -1,5 +1,7 @@
 package indi.goddess.shoppingmall2.dao.seller.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import indi.goddess.shoppingmall2.beans.TbItemCat;
 import indi.goddess.shoppingmall2.dao.seller.TbItemCatDao;
 import indi.goddess.shoppingmall2.entity.PageResult;
@@ -23,13 +25,9 @@ public class TbItemCatDaoImpl implements TbItemCatDao {
 //    没写完
     @Override
     public PageResult findPage(int pageNum, int pageSize) {//分页
-        Map<String,Integer> map = new HashMap<String, Integer>();
-        map.put("pageNum",pageNum);
-        map.put("pageSize",pageSize);
-        List<TbItemCat> list = sqlSession.selectList("com.pinyougou.mapper.TbItemCatMapper.findPage", map);
-
-        PageResult pageResult= new PageResult(1,list);//总量
-
+        PageHelper.startPage(pageNum, pageSize);
+        List<TbItemCat> list = sqlSession.selectList("com.pinyougou.mapper.TbItemCatMapper.findPage");
+        PageInfo<TbItemCat> pageInfo = new PageInfo<TbItemCat>(list);
         return null;
     }
 

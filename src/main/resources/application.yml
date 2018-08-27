@@ -28,12 +28,16 @@ spring:
     #开启thymeleaf
     enabled: true
     #下面两个都是默认配置，可以不加的
-    prefix: classpath:/templates/
+    prefix: classpath:templates/
     suffix: .html
+    #类型mode设置层HTML5
+    mode: HTML5
 
+#配置mybatis的sql打印，这的com.goddess.beans时*Mapper.xml文件里面的包名
 logging:
   level:
-     com.pinyougou.mapper: debug
+     com.goddess.beans: debug
+     com.goddess.mapper: debug
 
 mybatis:
   #起别名。可省略写mybatis的xml中的resultType的全路径
@@ -41,7 +45,11 @@ mybatis:
   #Mybatis扫描(配置xml模式使用)
   mapper-locations: classpath*:mapper/*/*.xml
 
-security:
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 
 appid: wx8397f8696b538317

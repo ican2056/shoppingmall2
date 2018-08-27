@@ -2,12 +2,10 @@ package indi.goddess.shoppingmall2.dao.manager.impl;
 
 import indi.goddess.shoppingmall2.beans.TbBrand;
 import indi.goddess.shoppingmall2.dao.manager.TbBrandDao;
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
@@ -25,4 +23,31 @@ public class TbBrandDaoImpl  implements TbBrandDao{
 
         return this.sqlSession.selectList("com.goddess.mapper.TbBrandMapper.selectAllBrand");
     }
+
+    @Override
+    public void addBrand(TbBrand brand) {
+         this.sqlSession.insert("com.goddess.mapper.TbBrandMapper.addBrand",brand);
+    }
+
+    @Override
+    public void updateByPrimaryKey(TbBrand brand) {
+        this.sqlSession.update("com.goddess.mapper.TbBrandMapper.updateByPrimaryKey",brand);
+    }
+
+    @Override
+    public TbBrand selectByPrimaryKey(Long id) {
+        return this.sqlSession.selectOne("com.goddess.mapper.TbBrandMapper.selectByPrimaryKey",id);
+    }
+
+    @Override
+    public void deleteByPrimaryKey(Long id) {
+        this.sqlSession.delete("com.goddess.mapper.TbBrandMapper.deleteByPrimaryKey",id);
+    }
+
+    @Override
+    public List<TbBrand> findByCondition() {
+        return this.sqlSession.selectList("com.goddess.mapper.TbBrandMapper.findByCondition");
+    }
+
+
 }

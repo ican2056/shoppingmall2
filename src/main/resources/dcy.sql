@@ -28,4 +28,6 @@ CREATE TABLE `tb_user` (
   UNIQUE KEY `username` USING BTREE (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='用户表';
 SELECT * FROM tb_user;
+select * from tb_user where username='lbw' and password='a';
+insert  into `tb_user`(`id`,`username`,`password`,`phone`,`email`,`created`,`updated`,`source_type`,`nick_name`,`name`,`status`,`head_pic`,`qq`,`account_balance`,`is_mobile_check`,`is_email_check`,`sex`,`user_level`,`points`,`experience_value`,`birthday`,`last_login_time`) values (1,'lbw','a','1112221111',NULL,'2017-08-19 20:50:21','2017-08-19 20:50:21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 DROP TABLE tb_user;

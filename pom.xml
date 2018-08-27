@@ -102,11 +102,18 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!--thymeleaf依赖-->
-        <!--<dependency>
+        <!--thymeleaf模板引擎-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>-->
+        </dependency>
+
+        <!-- mybatis 的分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
+        </dependency>
 	</dependencies>
 
 	<build>

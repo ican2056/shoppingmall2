@@ -10,10 +10,6 @@
         <result column="type_id" property="typeId" jdbcType="BIGINT" />
     </resultMap>
 
-    <!--查询所有tb_item_cat商品类别-->
-    <select id="findAll" resultMap="BaseResultMap" >
-        select * from tb_item_cat
-    </select>
 
     <!--插入商品类别-->
     <insert id="insert" parameterType="TbItemCat" >
@@ -59,8 +55,12 @@
     </delete>
 
     <!--分页-->
-    <select id="findPage" parameterType="java.util.Map">
-        SELECT * from tb_item_cat limit #{pageNum},#{pageSize}
+    <select id="findPage" resultMap="BaseResultMap">
+        SELECT * from tb_item_cat
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from tb_item_cat
     </select>
 
 </mapper>

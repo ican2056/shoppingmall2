@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goddess.mapper.TbBrandMapper" >
+  <resultMap id="BaseResultMap" type="indi.goddess.shoppingmall2.beans.TbBrand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="first_char" property="firstChar" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, first_char
+  </sql>
+
+
+
+
+
+  <insert id="insertSelective" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" >
+    insert into tb_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="firstChar != null" >
+        first_char,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null" >
+        #{firstChar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" >
+    update tb_brand
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null" >
+        first_char = #{firstChar,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectOptionList" resultType="java.util.Map">
+  	select id,name as text from tb_brand
+  </select>
+
+
+  <!-- 查询所有品牌 -->
+  <select id="selectAllBrand" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" resultMap="BaseResultMap">
+    select * from tb_brand
+
+  </select>
+
+  <!-- 增加品牌 -->
+  <insert id="addBrand" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" >
+    insert into tb_brand (id, name, first_char
+    )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}
+    )
+  </insert>
+  <!--  修改品牌 -->
+  <update id="updateByPrimaryKey" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" >
+    update tb_brand
+    set name = #{name,jdbcType=VARCHAR},
+    first_char = #{firstChar,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 查询一个品牌的详情 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <!-- 根据id删除品牌 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <!-- 条件查询 -->
+  <select id="findByCondition" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" resultMap="BaseResultMap">
+    select * from tb_brand
+    <where>
+      <if test="name!=null and name!=''">
+        name like  CONCAT('%',#{name,jdbcType="VARCHAR"},'%')
+      </if>
+      <if test="firstChar!=null and firstChar!=''">
+        and first_char = #{firstChar,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

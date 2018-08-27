@@ -1,31 +1,31 @@
 // 定义服务层:
 app.service("brandService",function($http){
 	this.findAll = function(){
-		return $http.get("../brand/findAll.do");
+		return $http.get("../brand/findAllBrand");
 	}
 	
-	this.findByPage = function(page,rows){
-		return $http.get("../brand/findByPage.do?page="+page+"&rows="+rows);
+	this.findPage = function(page,rows){
+		return $http.get("../brand/findByPage?page="+page+"&rows="+rows);
 	}
 	
 	this.save = function(entity){
-		return $http.post("../brand/save.do",entity);
+		return $http.post("../brand/add",entity);
 	}
 	
 	this.update=function(entity){
-		return $http.post("../brand/update.do",entity);
+		return $http.post("../brand/update",entity);
 	}
 	
 	this.findById=function(id){
-		return $http.get("../brand/findById.do?id="+id);
+		return $http.get("../brand/findOne?id="+id);
 	}
 	
 	this.dele = function(ids){
-		return $http.get("../brand/delete.do?ids="+ids);
+		return $http.get("../brand/delete?ids="+ids);
 	}
 	
-	this.search = function(page,rows,searchEntity){
-		return $http.post("../brand/search.do?page="+page+"&rows="+rows,searchEntity);
+	this.search = function(){
+        return $http.get("../brand/search");
 	}
 	
 	this.selectOptionList = function(){

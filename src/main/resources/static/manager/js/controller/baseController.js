@@ -11,8 +11,8 @@ app.controller("baseController",function($scope){
 	}; 
 	
 	$scope.reloadList = function(){
-		// $scope.findByPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
-		$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+		 $scope.findPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+		//$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
 	}
 	
 	// 定义一个数组:

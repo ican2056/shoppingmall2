@@ -7,7 +7,8 @@ app.service('specificationService',function($http){
 	}
 	//分页 
 	this.findPage=function(page,rows){
-		return $http.get('../specification/findPage.do?page='+page+'&rows='+rows);
+		alert('123');
+		return $http.get('../specification/findByPage?page='+page+'&rows='+rows);
 	}
 	//查询实体
 	this.findOne=function(id){

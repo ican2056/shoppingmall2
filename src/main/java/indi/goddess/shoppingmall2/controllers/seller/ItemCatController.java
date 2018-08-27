@@ -1,10 +1,12 @@
 package indi.goddess.shoppingmall2.controllers.seller;
 
 
+import indi.goddess.shoppingmall2.beans.TbGoods;
 import indi.goddess.shoppingmall2.beans.TbItemCat;
 import indi.goddess.shoppingmall2.entity.PageResult;
 import indi.goddess.shoppingmall2.service.seller.ItemCatService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,11 +26,11 @@ public class ItemCatController {
         itemCatService.add(itemCat);
     }
 
-    @PostMapping("findAll")
+    @GetMapping("findAll")
     @ResponseBody
-    public String findAll(){
+    public List<TbItemCat> findAll(){
         List<TbItemCat> all = itemCatService.findAll();
-        return all.toString();
+        return all;
     }
 
     @PostMapping("update")
@@ -51,4 +53,12 @@ public class ItemCatController {
     public void delete(Long[] ids){
         itemCatService.delete(ids);
     }
+
+    @GetMapping("findByParentId")
+    @ResponseBody
+    public List<TbItemCat> findByParentId(Long parentId) {
+        List<TbItemCat> list = itemCatService.findByParentId(parentId);
+        return list;
+    }
+
 }

@@ -1,17 +1,22 @@
 //服务层
+//网页加载完成就启动
+angular.element(window).bind('load', function() {
+
+});
+
 app.service('goodsService',function($http){
 	    	
 	//读取列表数据绑定到表单中
 	this.findAll=function(){
-		return $http.get('../goods/findAll.do');		
+		return $http.get('/goods/findAll.do');
 	}
 	//分页 
 	this.findPage=function(page,rows){
-		return $http.get('../goods/findPage.do?page='+page+'&rows='+rows);
+		return $http.get('/seller/goods/findPage?page='+page+'&rows='+rows);
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../goods/findOne.do?id='+id);
+		return $http.get('/seller/goods/findOne?id='+id);
 	}
 	//增加 
 	this.add=function(entity){
@@ -27,6 +32,6 @@ app.service('goodsService',function($http){
 	}
 	//搜索
 	this.search=function(page,rows,searchEntity){
-		return $http.post('../goods/search.do?page='+page+"&rows="+rows, searchEntity);
+		return $http.post('/seller/goods/findPage?page='+page+"&rows="+rows, searchEntity);
 	}    	
 });

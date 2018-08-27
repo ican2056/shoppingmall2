@@ -9,9 +9,24 @@
 
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-login.css" />
+    <script src="plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+        //创建模块
+        var app=angular.module("myApp_lbw",[]);
+        //创建控制器
+        app.controller("myController_lbw",function ($scope,$http) {
+            $scope.toLogin=function () {
+                window.location.href='user/user_login.action?username='+$scope.username+"&password="+$scope.password;
+                //alert(">>>>>")
+                /*$http.get('user/user_login.action?username='+$scope.username+"&password="+$scope.password).success(function (resp) {
+                    alert(">>>>>")
+                });*/
+            }
+        });
+    </script>
 </head>
 
-<body>
+<body ng-app="myApp_lbw" ng-controller="myController_lbw">
 	<div class="login-box">
 		<!--head-->
 		<div class="py-container logoArea">
@@ -41,10 +56,10 @@
 						<div id="profile" class="tab-pane  active">
 							<form class="sui-form">
 								<div class="input-prepend"><span class="add-on loginname"></span>
-									<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
+									<input ng-model="username" id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
 								</div>
 								<div class="input-prepend"><span class="add-on loginpwd"></span>
-									<input id="prependedInput" type="password" placeholder="请输入密码" class="span2 input-xfat">
+									<input ng-model="password" id="prependedInput" type="password" placeholder="请输入密码" class="span2 input-xfat">
 								</div>
 								<div class="setting">
 									<label class="checkbox inline">
@@ -54,7 +69,8 @@
 									<span class="forget">忘记密码？</span>
 								</div>
 								<div class="logined">
-									<a class="sui-btn btn-block btn-xlarge btn-danger" href="home-index.html" >登&nbsp;&nbsp;录</a>
+									<a class="sui-btn btn-block btn-xlarge btn-danger" target="_blank" ng-click="toLogin()" >登&nbsp;&nbsp;录</a>
+
 								</div>
 							</form>
 							<div class="otherlogin">

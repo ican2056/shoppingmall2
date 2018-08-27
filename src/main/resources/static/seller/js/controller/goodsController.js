@@ -13,7 +13,7 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	}    
 	
 	//分页
-	$scope.findPage=function(page,rows){			
+	$scope.findPage=function(page,rows){
 		goodsService.findPage(page,rows).success(
 			function(response){
 				$scope.list=response.rows;	
@@ -25,7 +25,7 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	//查询实体 
 	$scope.findOne=function(){	
 		var id = $location.search()['id'];
-		// alert(id);
+		 // alert("id:"+id);
 		goodsService.findOne(id).success(
 			function(response){
 				$scope.entity= response;	
@@ -104,10 +104,10 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
+	$scope.search=function(page,rows){
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.rows;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -247,10 +247,21 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	$scope.itemCatList = [];
 	// 显示分类:
 	$scope.findItemCatList = function(){
+
 		itemCatService.findAll().success(function(response){
-			for(var i=0;i<response.length;i++){
-				$scope.itemCatList[response[i].id] = response[i].name;
-			}
+            $scope.list=response;
+            // for(var i=0;i<response.length;i++){
+			// 	 $scope.entity[id]=response[i].id;
+			// }
 		});
+
+        itemCatService.findALlItemCatList().success(function(response) {
+            $scope.itemCatList[0]='';
+            for(var i=0;i<response.length;i++){
+                $scope.itemCatList[i+1] = response[i].name;
+            }
+        });
+
+
 	}
 });	
