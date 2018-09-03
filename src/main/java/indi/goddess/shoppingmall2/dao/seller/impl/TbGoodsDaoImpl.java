@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TbGoodsDaoImpl implements TbGoodsDao {
@@ -23,32 +25,37 @@ public class TbGoodsDaoImpl implements TbGoodsDao {
     }
 
     @Override
-    public PageResult findPage(int pageNum, int pageSize) {
+    public PageResult findPage(int pageNum, int pageSize,int auditStatus) {
         PageHelper.startPage(pageNum, pageSize);
-        List<TbGoods> list = findAll();
+        Map map=new HashMap();
+        map.put("auditStatus",auditStatus+"");
+        List<TbGoods> list = sqlSession.selectList("com.pinyougou.mapper.TbGoodsMapper.findByStatus", map);
+
         PageInfo<TbGoods> pageInfo = new PageInfo<TbGoods>(list);
         PageResult pageResult = new PageResult(pageInfo.getTotal(),pageInfo.getList());
         return pageResult;
     }
 
     @Override
-    public void add(Goods goods) {
-
+    public void add(TbGoods goods) {
+        sqlSession.insert("com.pinyougou.mapper.TbGoodsMapper.insertSelective",goods);
     }
 
     @Override
-    public void update(Goods goods) {
-
+    public void update(TbGoods goods) {
+        sqlSession.update("com.pinyougou.mapper.TbGoodsMapper.updateByPrimaryKeySelective",goods);
     }
 
     @Override
-    public Goods findOne(Long id) {
+    public TbGoods findOne(Long id) {
         return sqlSession.selectOne("com.pinyougou.mapper.TbGoodsMapper.selectByPrimaryKey",id);
     }
 
     @Override
     public void delete(Long[] ids) {
-
+        for(Long id:ids) {
+            sqlSession.delete("com.pinyougou.mapper.TbGoodsMapper.deleteByPrimaryKey", id);
+        }
     }
 
     @Override

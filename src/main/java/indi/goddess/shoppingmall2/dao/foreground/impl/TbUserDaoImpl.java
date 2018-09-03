@@ -16,6 +16,7 @@ public class TbUserDaoImpl implements TbUserDao {
 
 	@Override
 	public TbUser findOne(TbUser tbUser, String sqlId) {
+		System.out.println(tbUser);
 		List<TbUser> list = sqlSession.selectList(MAPPERPATH + tbUser.getClass().getSimpleName() + "Mapper." + sqlId,tbUser);
 		if (list != null && list.size() > 0) {
 			return list.get(0);

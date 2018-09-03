@@ -37,12 +37,12 @@
     </update>
 
     <!--根据id查询-->
-    <select id="findOne" parameterType="Long" resultType="TbItemCat">
+    <select id="findOne" parameterType="Long" resultMap="BaseResultMap">
         select * from tb_item_cat where id=#{id}
     </select>
 
     <!--根据父类id查询-->
-    <select id="findByParentId" parameterType="Long" resultType="TbItemCat">
+    <select id="findByParentId" parameterType="Long" resultMap="BaseResultMap">
         select * from tb_item_cat where parent_id=#{parentId}
     </select>
 

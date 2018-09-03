@@ -24,7 +24,7 @@ public interface GoodsService {
 	 * 返回分页列表
 	 * @return
 	 */
-	public PageResult findPage(int pageNum, int pageSize);
+	public PageResult findPage(int pageNum, int pageSize, int auditStatus);
 	
 	
 	/**

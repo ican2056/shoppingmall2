@@ -20,18 +20,28 @@ app.service('goodsService',function($http){
 	}
 	//增加 
 	this.add=function(entity){
-		return  $http.post('../goods/add.do',entity );
+		return  $http.post('/seller/goods/add.do',entity );
 	}
 	//修改 
 	this.update=function(entity){
-		return  $http.post('../goods/update.do',entity );
+		return  $http.post('/seller/goods/update.do',entity );
 	}
 	//删除
 	this.dele=function(ids){
-		return $http.get('../goods/delete.do?ids='+ids);
+		return $http.get('/seller/goods/delete.do?ids='+ids);
 	}
+
+    //更新审核状态
+    this.updateStatu=function(ids){
+        return $http.get('/seller/goods/updateStatu.do?ids='+ids+'&status='+0);
+    }
 	//搜索
 	this.search=function(page,rows,searchEntity){
-		return $http.post('/seller/goods/findPage?page='+page+"&rows="+rows, searchEntity);
-	}    	
+
+		return $http.post('/seller/goods/findPage?page='+page+"&rows="+rows+"&auditStatus="+(searchEntity.auditStatus==null?"-1":searchEntity.auditStatus));
+	}
+
+    // this.selectStatus=function (status,goodsName) {
+		// return $http.post('/seller/goods/selectStatus?status='+status+"&goodsName="+goodsName);
+    // }
 });

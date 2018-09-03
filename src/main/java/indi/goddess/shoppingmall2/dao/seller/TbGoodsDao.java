@@ -19,19 +19,19 @@ public interface TbGoodsDao {
      * 返回分页列表
      * @return
      */
-    public PageResult findPage(int pageNum, int pageSize);
+    public PageResult findPage(int pageNum, int pageSize, int auditStatus);
 
 
     /**
      * 增加
      */
-    public void add(Goods goods);
+    public void add(TbGoods goods);
 
 
     /**
      * 修改
      */
-    public void update(Goods goods);
+    public void update(TbGoods goods);
 
 
     /**
@@ -39,7 +39,7 @@ public interface TbGoodsDao {
      * @param id
      * @return
      */
-    public Goods findOne(Long id);
+    public TbGoods findOne(Long id);
 
 
     /**

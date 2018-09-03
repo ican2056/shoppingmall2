@@ -36,8 +36,8 @@
       points, experience_value, birthday,
       last_login_time)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP},
-      #{updated,jdbcType=TIMESTAMP}, #{sourceType,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, now(),
+      now(), #{sourceType,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR},
       #{qq,jdbcType=VARCHAR}, #{accountBalance,jdbcType=DECIMAL}, #{isMobileCheck,jdbcType=VARCHAR},
       #{isEmailCheck,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{userLevel,jdbcType=INTEGER},

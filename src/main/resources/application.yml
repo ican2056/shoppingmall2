@@ -38,6 +38,7 @@ logging:
   level:
      com.goddess.beans: debug
      com.goddess.mapper: debug
+     indi.goddess.shoppingmall2.beans: debug
 
 mybatis:
   #起别名。可省略写mybatis的xml中的resultType的全路径

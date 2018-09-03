@@ -15,7 +15,7 @@ app.service('userService',function($http){
 	}
 	//增加 
 	this.add=function(entity,smscode){
-		return  $http.post('../user/user_register.action?smscode='+smscode+'&entity.username='+entity.username+'&entity.password='+entity.password+'&entity.phone='+entity.phone);
+		return  $http.post('../user/user_register.action?smscode='+smscode+'&username='+entity.username+'&password='+entity.password+'&phone='+entity.phone);
 
 	}
 	//修改 

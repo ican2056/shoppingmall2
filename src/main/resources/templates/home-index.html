@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <title>我的订单</title>
+    <base href="http://localhost:8080/"/>
      <link rel="icon" href="assets/img/favicon.ico">
-
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
     
@@ -29,7 +29,8 @@
 				<div class="shortcut">
 					<ul class="fl">
 						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
+                        <li class="f-item" th:if="${user==null}">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
+                        <li class="f-item" th:if="${user!=null}" th:text="${user.username}"></li>
 					</ul>
 					<ul class="fr">
 						<li class="f-item">我的订单</li>
@@ -63,14 +64,14 @@
 			<div class="py-container">
 				<div class="yui3-g Logo">
 					<div class="yui3-u Left logoArea">
-						<a class="logo-bd" title="品优购" href="JD-index.html" target="_blank"></a>
+						<a class="logo-bd" title="品优购" href="/user/toIndex.action" target="_blank"></a>
 					</div>
 					<div class="yui3-u Center searchArea">
 						<div class="search">
 							<form action="" class="sui-form form-inline">
 								<!--searchAutoComplete-->
 								<div class="input-append">
-									<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
+									<input type="text" id="autocomplete" class="input-error input-xxlarge" />
 									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
 								</div>
 							</form>

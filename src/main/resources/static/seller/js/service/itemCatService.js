@@ -11,7 +11,7 @@ app.service('itemCatService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../itemCat/findOne.do?id='+id);
+		return $http.get('/seller/itemcat/findOne?id='+id);
 	}
 	//增加 
 	this.add=function(entity){

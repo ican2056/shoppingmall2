@@ -4,6 +4,7 @@ import indi.goddess.shoppingmall2.beans.TbSeller;
 import indi.goddess.shoppingmall2.dao.seller.TbSellerDao;
 import indi.goddess.shoppingmall2.entity.PageResult;
 import indi.goddess.shoppingmall2.service.seller.SellerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 public class SellerServiceImpl implements SellerService {
-    @Resource(name="tbSellerDaoImpl")
+    @Autowired
     private TbSellerDao tbSellerDao;
     @Override
     public List<TbSeller> findAll() {

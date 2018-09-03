@@ -48,8 +48,8 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <a href="goods_edit.html"  class="btn btn-default">新建</a>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="提交审核" ng-click="updateStatu()" ><i class="fa fa-check"></i> 提交审核</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -65,7 +65,7 @@
                                          	<option value="3">关闭</option>                                     
                                         </select>
 							                  商品名称：<input type="text" ng-model="searchEntity.goodsName">									
-									<button class="btn btn-default" ng-click="reloadList()">查询</button>                                    
+									<button class="btn btn-default" ng-click="reloadList()">查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -89,7 +89,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox"></td>			                              
+			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.goodsName}}</td>
 									      <td>{{entity.price}}</td>

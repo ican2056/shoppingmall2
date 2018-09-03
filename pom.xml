@@ -25,6 +25,19 @@
 	</properties>
 
 	<dependencies>
+        <!--设置gson依赖-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!--设置fastjson依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+
         <!--设置web依赖-->
         <dependency>
 			<groupId>org.springframework.boot</groupId>

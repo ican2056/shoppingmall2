@@ -44,7 +44,8 @@ public class ItemCatController {
        return itemCatService.findPage(pageNum,pageSize);
     }
 
-    @PostMapping("findOne")
+    @GetMapping("findOne")
+    @ResponseBody
     public TbItemCat findOne(Long id){
         return itemCatService.findOne(id);
     }

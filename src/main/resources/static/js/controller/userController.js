@@ -14,7 +14,7 @@ app.controller('userController' ,function($scope,$controller,userService){
 		//新增
 		userService.add($scope.entity,$scope.smscode).success(
 			function(response){
-				alert(response.path);
+				//alert(response.path);
 				window.location.href=response.path;
 			}		
 		);

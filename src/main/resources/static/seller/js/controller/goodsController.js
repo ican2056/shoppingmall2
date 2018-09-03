@@ -2,6 +2,10 @@
 app.controller('goodsController' ,function($scope,$controller,$location,typeTemplateService ,itemCatService,uploadService ,goodsService){	
 	
 	$controller('baseController',{$scope:$scope});//继承
+
+    // $scope.myGetData=function (myData) {
+		// alert("====="+myData);
+    // }
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -24,8 +28,9 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	
 	//查询实体 
 	$scope.findOne=function(){	
-		var id = $location.search()['id'];
-		 // alert("id:"+id);
+		var id = $location.search()['id'];//获取参数值
+
+		//alert("id:"+id);
 		goodsService.findOne(id).success(
 			function(response){
 				$scope.entity= response;	
@@ -49,7 +54,8 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 			}
 		);				
 	}
-	
+
+    //根据规格名称和选项名称返回是否被勾选
 	$scope.checkAttributeValue = function(specName,optionName){
 		var items = $scope.entity.goodsDesc.specificationItems;
 		var object = $scope.searchObjectByKey(items,"attributeName",specName);
@@ -65,21 +71,21 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	}
 	
 	//保存 
-	$scope.save=function(){	
+	$scope.save=function(){
 		// 再添加之前，获得富文本编辑器中的内容。
 		$scope.entity.goodsDesc.introduction=editor.html();
 		var serviceObject;//服务层对象  				
 		if($scope.entity.goods.id!=null){//如果有ID
-			serviceObject=goodsService.update( $scope.entity ); //修改  
+			serviceObject=goodsService.update( $scope.entity ); //修改
 		}else{
-			serviceObject=goodsService.add( $scope.entity  );//增加 
+			serviceObject=goodsService.add( $scope.entity );//增加
 		}				
 		serviceObject.success(
 			function(response){
 				if(response.flag){
 					//重新查询 
-		        	alert(response.message);
-		        	location.href="goods.html";
+		        	//location.href="goods.html";
+                    $scope.entity.goods.id=response.message;
 				}else{
 					alert(response.message);
 				}
@@ -90,7 +96,7 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	 
 	//批量删除 
 	$scope.dele=function(){			
-		//获取选中的复选框			
+		//获取选中的复选框
 		goodsService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.flag){
@@ -100,6 +106,34 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 			}		
 		);				
 	}
+
+	//更新状态
+    $scope.updateStatu=function(){
+        //获取选中的复选框
+        goodsService.updateStatu( $scope.selectIds ).success(
+            function(response){
+                if(response.flag){
+                    $scope.reloadList();//刷新列表
+                    $scope.selectIds = [];
+                }
+            }
+        );
+    }
+
+
+
+    //分类查询商品 审核通过，未通过
+    // $scope.selectStatus=function(){
+    //     //获取选中的复选框
+    //     goodsService.selectStatus( $scope.searchEntity.auditStatus,$scope.searchEntity.goodsName ).success(
+    //         function(response){
+    //             if(response.flag){
+    //                 $scope.reloadList();//刷新列表
+    //                 $scope.selectIds = [];
+    //             }
+    //         }
+    //     );
+    // }
 	
 	$scope.searchEntity={};//定义搜索对象 
 	
@@ -117,20 +151,20 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	
 	$scope.uploadFile = function(){
 		// 调用uploadService的方法完成文件的上传
-		uploadService.uploadFile().success(function(response){
-			if(response.flag){
-				// 获得url
-				$scope.image_entity.url =  response.message;
-			}else{
-				alert(response.message);
-			}
-		});
+        //debugger;
+		uploadService.uploadFile().error(function (data) {
+            alert("error");
+        }).success(function (data) {
+            $scope.image_entity.url=data.img_path;
+        });
 	}
 	
 	// 获得了image_entity的实体的数据{"color":"褐色","url":"http://192.168.209.132/group1/M00/00/00/wKjRhFn1bH2AZAatAACXQA462ec665.jpg"}
 	$scope.entity={goods:{},goodsDesc:{itemImages:[],specificationItems:[]}};
-	
+
+	//添加图片列表
 	$scope.add_image_entity = function(){
+        //$scope.image_entity=myupload();
 		$scope.entity.goodsDesc.itemImages.push($scope.image_entity);
 	}
 	

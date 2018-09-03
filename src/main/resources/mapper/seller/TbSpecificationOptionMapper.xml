@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pinyougou.mapper.TbSpecificationOptionMapper" >
+  <resultMap id="BaseResultMap" type="TbSpecificationOption" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="option_name" property="optionName" jdbcType="VARCHAR" />
+    <result column="spec_id" property="specId" jdbcType="BIGINT" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, option_name, spec_id, orders
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_specification_option
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_specification_option
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="TbSpecificationOption" >
+    insert into tb_specification_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="optionName != null" >
+        option_name,
+      </if>
+      <if test="specId != null" >
+        spec_id,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null" >
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="specId != null" >
+        #{specId,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="TbSpecificationOption" >
+    update tb_specification_option
+    <set >
+      <if test="optionName != null" >
+        option_name = #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="specId != null" >
+        spec_id = #{specId,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

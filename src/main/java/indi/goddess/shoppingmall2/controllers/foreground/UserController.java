@@ -24,24 +24,28 @@ public class UserController {
 	private UserService userService;
 
 	@ApiOperation(value = "用户注册", notes = "方法的提示：用户注册")
-	//@ApiImplicitParam(name = "user",value = "User对象",paramType = "path",required = true,dataTypeClass = TbUser.class)
 	@RequestMapping("user_register.action")
+	@ResponseBody
 	public String register(HttpServletRequest request, HttpSession session,String smscode,TbUser user) {
 		System.out.println("---------");
 		String code = session.getAttribute("code").toString();
 		if (!smscode.equals(code)) {
 			request.setAttribute("errormsg", "验证码错误");
 		} else {
-			int result = userService.add(user);
+			int result=0;
+			try {
+				result= userService.add(user);
+			}catch (Exception e){
+			}
 			if (result > 0) {
 				request.setAttribute("msg", "注册成功");
 				System.out.println("success");
-				return "{\"path\":\"/foreground/login.html\"}";
+				return "{\"path\":\"/login.html\"}";
 			} else {
 				request.setAttribute("errormsg", "注册失败");
 			}
 		}
-		return  "{\"path\":\"/foreground/register.html\"}";
+		return  "{\"path\":\"/register.html\"}";
 	}
 
 
@@ -52,6 +56,32 @@ public class UserController {
 		String code=session.getAttribute("code").toString();
 		//System.out.println("================");
 		IndustrySMS.execute(code,phone);
+	}
+
+	@RequestMapping("/toHome.action")
+	public String login(HttpSession session,ModelMap map) {
+		TbUser u = (TbUser) session.getAttribute("user");
+		String viewName;
+		if(u!=null){
+			viewName="home-index";
+			map.put("user",u);
+		}else{
+			viewName="redirect:/login.html";
+		}
+		return viewName;
+	}
+
+	@RequestMapping("/toIndex.action")
+	public String toIndex(HttpSession session,ModelMap map) {
+		TbUser u = (TbUser) session.getAttribute("user");
+		String viewName;
+		if(u!=null){
+			viewName="index";
+			map.put("user",u);
+		}else{
+			viewName="redirect:/login.html";
+		}
+		return viewName;
 	}
 
 
@@ -65,11 +95,10 @@ public class UserController {
 			System.out.println("存用户信息发送到前台页面");
 			//request.setAttribute("user",user);
 			map.put("user",user);
-			map.put("name","lbw");
 			mav.setViewName("index");
 		} else {
 			request.setAttribute("errormsg", "用户名或密码错误");
-			mav.setViewName("redirect:login.html");
+			mav.setViewName("redirect:/login.html");
 		}
 		return mav;
 	}
