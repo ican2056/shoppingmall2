@@ -6,10 +6,12 @@ import indi.goddess.shoppingmall2.entity.Result;
 import indi.goddess.shoppingmall2.service.manager.BrandService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/manager/brand")
@@ -84,7 +86,12 @@ public class BrandController {
         }
     }
     @RequestMapping("/search")
-    public List<TbBrand> search(){
-        return brandService.findPageByCondition();
+    public PageResult search(@RequestBody TbBrand brand, int page, int rows  ){
+        return  brandService.findPageByCondition(brand,page,rows);
+    }
+
+    @RequestMapping("/selectOptionList")
+    public List<Map> selectOptionList(){
+        return brandService.selectOptionList();
     }
 }

@@ -3,6 +3,7 @@ package indi.goddess.shoppingmall2.dao.manager;
 import indi.goddess.shoppingmall2.beans.TbBrand;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbBrandDao {
     public List<TbBrand> findAllBrand();
@@ -19,5 +20,8 @@ public interface TbBrandDao {
 
     public void deleteByPrimaryKey(Long id);
 
-    public List<TbBrand> findByCondition();
+    public List<TbBrand> findByCondition(TbBrand tbBrand);
+
+    // 获取下拉列表
+    List<Map> selectOptionList();
 }

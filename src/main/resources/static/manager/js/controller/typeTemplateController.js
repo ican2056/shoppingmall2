@@ -74,8 +74,8 @@ app.controller('typeTemplateController' ,function($scope,$controller,brandServic
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
-		typeTemplateService.search(page,rows,$scope.searchEntity).success(
+	$scope.search=function(page){
+		typeTemplateService.search(page,$scope.paginationConf.itemsPerPage,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.rows;	
 				$scope.paginationConf.totalItems=response.total;//更新总记录数

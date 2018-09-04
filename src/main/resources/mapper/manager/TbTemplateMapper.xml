@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goddess.mapper.TbTemplateMapper" >
+  <resultMap id="BaseResultMap" type="indi.goddess.shoppingmall2.beans.TbTypeTemplate" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="spec_ids" property="specIds" jdbcType="VARCHAR" />
+    <result column="brand_ids" property="brandIds" jdbcType="VARCHAR" />
+    <result column="custom_attribute_items" property="customAttributeItems" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, spec_ids, brand_ids, custom_attribute_items
+  </sql>
+
+  <select id="selectAllTemplate" parameterType="indi.goddess.shoppingmall2.beans.TbTypeTemplate" resultMap="BaseResultMap">
+    select * from tb_type_template
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_type_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_type_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="indi.goddess.shoppingmall2.beans.TbTypeTemplate" >
+    insert into tb_type_template (id, name, spec_ids,
+    brand_ids, custom_attribute_items)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{specIds,jdbcType=VARCHAR},
+    #{brandIds,jdbcType=VARCHAR}, #{customAttributeItems,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="indi.goddess.shoppingmall2.beans.TbTypeTemplate" >
+    insert into tb_type_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="specIds != null" >
+        spec_ids,
+      </if>
+      <if test="brandIds != null" >
+        brand_ids,
+      </if>
+      <if test="customAttributeItems != null" >
+        custom_attribute_items,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specIds != null" >
+        #{specIds,jdbcType=VARCHAR},
+      </if>
+      <if test="brandIds != null" >
+        #{brandIds,jdbcType=VARCHAR},
+      </if>
+      <if test="customAttributeItems != null" >
+        #{customAttributeItems,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="indi.goddess.shoppingmall2.beans.TbTypeTemplate" >
+    update tb_type_template
+    set name = #{name,jdbcType=VARCHAR},
+    spec_ids = #{specIds,jdbcType=VARCHAR},
+    brand_ids = #{brandIds,jdbcType=VARCHAR},
+    custom_attribute_items = #{customAttributeItems,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="findByCondition" parameterType="indi.goddess.shoppingmall2.beans.TbTypeTemplate" resultMap="BaseResultMap">
+    select * from tb_type_template
+    <where>
+      <if test="name!=null and name!=''">
+        name LIKE CONCAT(CONCAT('%',#{name},'%'))
+      </if>
+
+    </where>
+  </select>
+</mapper>

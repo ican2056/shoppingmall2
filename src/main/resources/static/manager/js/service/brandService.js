@@ -23,12 +23,13 @@ app.service("brandService",function($http){
 	this.dele = function(ids){
 		return $http.get("../brand/delete?ids="+ids);
 	}
-	
-	this.search = function(){
-        return $http.get("../brand/search");
-	}
-	
-	this.selectOptionList = function(){
-		return $http.get("../brand/selectOptionList.do");
+
+    //搜索
+    this.search=function(page,rows,searchEntity){
+        return $http.post('../brand/search?page='+page+"&rows="+rows, searchEntity);
+    }
+
+    this.selectOptionList = function(){
+		return $http.get("../brand/selectOptionList");
 	}
 });

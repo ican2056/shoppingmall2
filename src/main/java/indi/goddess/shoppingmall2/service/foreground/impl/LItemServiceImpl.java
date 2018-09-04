@@ -56,4 +56,5 @@ public class LItemServiceImpl implements LItemService {
 		map.put("itemCat2",itemCat2);
 		map.put("itemCat3",itemCat3);
 	}
+
 }

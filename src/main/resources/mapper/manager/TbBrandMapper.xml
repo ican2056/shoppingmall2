@@ -64,7 +64,14 @@
   <!-- 查询所有品牌 -->
   <select id="selectAllBrand" parameterType="indi.goddess.shoppingmall2.beans.TbBrand" resultMap="BaseResultMap">
     select * from tb_brand
-
+    <where>
+    <if test="name!=null and name!=''">
+      name like  CONCAT('%',#{name,jdbcType="VARCHAR"},'%')
+    </if>
+    <if test="firstChar!=null and firstChar!=''">
+      and first_char = #{firstChar,jdbcType=VARCHAR}
+    </if>
+    </where>
   </select>
 
   <!-- 增加品牌 -->
@@ -102,7 +109,7 @@
     select * from tb_brand
     <where>
       <if test="name!=null and name!=''">
-        name like  CONCAT('%',#{name,jdbcType="VARCHAR"},'%')
+        name LIKE CONCAT(CONCAT('%',#{name},'%'))
       </if>
       <if test="firstChar!=null and firstChar!=''">
         and first_char = #{firstChar,jdbcType=VARCHAR}

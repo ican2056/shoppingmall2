@@ -1,9 +1,11 @@
 package indi.goddess.shoppingmall2.service.manager;
 
 import indi.goddess.shoppingmall2.beans.TbBrand;
+import indi.goddess.shoppingmall2.beans.group.Specification;
 import indi.goddess.shoppingmall2.entity.PageResult;
 
 import java.util.List;
+import java.util.Map;
 
 //品牌列表
 public interface BrandService {
@@ -36,5 +38,10 @@ public interface BrandService {
     public void delete(Long[] ids);
 
     //条件查询
-   public List<TbBrand> findPageByCondition();
+   public PageResult findPageByCondition(TbBrand tbBrand, int pageNum, int pageSize);
+
+   //获取下拉列表
+   List<Map> selectOptionList();
+
+
 }

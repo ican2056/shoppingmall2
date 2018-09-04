@@ -7,11 +7,11 @@ app.service('sellerService',function($http){
 	}
 	//分页 
 	this.findPage=function(page,rows){
-		return $http.get('../seller/findPage.do?page='+page+'&rows='+rows);
+		return $http.get('../seller/findPage?page='+page+'&rows='+rows);
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../seller/findOne.do?id='+id);
+		return $http.get('../seller/findOne?id='+id);
 	}
 	//增加 
 	this.add=function(entity){
@@ -27,10 +27,10 @@ app.service('sellerService',function($http){
 	}
 	//搜索
 	this.search=function(page,rows,searchEntity){
-		return $http.post('../seller/search.do?page='+page+"&rows="+rows, searchEntity);
+		return $http.post('../seller/search?page='+page+"&rows="+rows, searchEntity);
 	}    
 	
 	this.updateStatus = function(sellerId,status){
-		return $http.get('../seller/updateStatus.do?sellerId='+sellerId+"&status="+status);
+		return $http.get('../seller/updateStatus?sellerId='+sellerId+"&status="+status);
 	}
 });

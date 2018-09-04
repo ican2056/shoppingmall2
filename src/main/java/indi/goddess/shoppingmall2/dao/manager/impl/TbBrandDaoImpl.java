@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TbBrandDaoImpl  implements TbBrandDao{
@@ -45,8 +46,13 @@ public class TbBrandDaoImpl  implements TbBrandDao{
     }
 
     @Override
-    public List<TbBrand> findByCondition() {
-        return this.sqlSession.selectList("com.goddess.mapper.TbBrandMapper.findByCondition");
+    public List<TbBrand> findByCondition(TbBrand tbBrand) {
+        return this.sqlSession.selectList("com.goddess.mapper.TbBrandMapper.findByCondition",tbBrand);
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return this.sqlSession.selectList("com.goddess.mapper.TbBrandMapper.selectOptionList");
     }
 
 

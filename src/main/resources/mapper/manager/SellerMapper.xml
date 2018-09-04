@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goddess.mapper.TbSellerMapper" >
+    <resultMap id="BaseResultMap" type="indi.goddess.shoppingmall2.beans.TbSeller" >
+        <id column="seller_id" property="sellerId" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="address_detail" property="addressDetail" jdbcType="VARCHAR" />
+        <result column="linkman_name" property="linkmanName" jdbcType="VARCHAR" />
+        <result column="linkman_qq" property="linkmanQq" jdbcType="VARCHAR" />
+        <result column="linkman_mobile" property="linkmanMobile" jdbcType="VARCHAR" />
+        <result column="linkman_email" property="linkmanEmail" jdbcType="VARCHAR" />
+        <result column="license_number" property="licenseNumber" jdbcType="VARCHAR" />
+        <result column="tax_number" property="taxNumber" jdbcType="VARCHAR" />
+        <result column="org_number" property="orgNumber" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="BIGINT" />
+        <result column="logo_pic" property="logoPic" jdbcType="VARCHAR" />
+        <result column="brief" property="brief" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+        <result column="legal_person_card_id" property="legalPersonCardId" jdbcType="VARCHAR" />
+        <result column="bank_user" property="bankUser" jdbcType="VARCHAR" />
+        <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        seller_id, name, nick_name, password, email, mobile, telephone, status, address_detail,
+        linkman_name, linkman_qq, linkman_mobile, linkman_email, license_number, tax_number,
+        org_number, address, logo_pic, brief, create_time, legal_person, legal_person_card_id,
+        bank_user, bank_name
+    </sql>
+
+    <select id="selectAllSeller" parameterType="indi.goddess.shoppingmall2.beans.TbSeller" resultMap="BaseResultMap">
+        select * from tb_seller
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from tb_seller
+        where seller_id = #{sellerId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="TbSeller" >
+        update tb_seller
+        set name = #{name,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        telephone = #{telephone,jdbcType=VARCHAR},
+        status = #{status,jdbcType=VARCHAR},
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+        linkman_name = #{linkmanName,jdbcType=VARCHAR},
+        linkman_qq = #{linkmanQq,jdbcType=VARCHAR},
+        linkman_mobile = #{linkmanMobile,jdbcType=VARCHAR},
+        linkman_email = #{linkmanEmail,jdbcType=VARCHAR},
+        license_number = #{licenseNumber,jdbcType=VARCHAR},
+        tax_number = #{taxNumber,jdbcType=VARCHAR},
+        org_number = #{orgNumber,jdbcType=VARCHAR},
+        address = #{address,jdbcType=BIGINT},
+        logo_pic = #{logoPic,jdbcType=VARCHAR},
+        brief = #{brief,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+        legal_person_card_id = #{legalPersonCardId,jdbcType=VARCHAR},
+        bank_user = #{bankUser,jdbcType=VARCHAR},
+        bank_name = #{bankName,jdbcType=VARCHAR}
+        where seller_id = #{sellerId,jdbcType=VARCHAR}
+    </update>
+    <select id="findByCondition" parameterType="indi.goddess.shoppingmall2.beans.TbSeller" resultMap="BaseResultMap">
+        select * from tb_seller
+        <where>
+            <if test="status!=null and status!=''">
+                status=#{status,jdbcType=VARCHAR}
+            </if>
+
+            <if test="name!=null and name!=''">
+               and name LIKE CONCAT(CONCAT('%',#{name},'%'))
+            </if>
+            <if test="nickName!=null and nickName!=''">
+              and  nick_name LIKE CONCAT(CONCAT('%',#{nickName},'%'))
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -68,8 +68,11 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
-		sellerService.search(page,rows,$scope.searchEntity).success(
+	$scope.search=function(page){
+		if($scope.searchEntity.status==0){
+            $scope.searchEntity.status="";
+		}
+		sellerService.search(page,$scope.paginationConf.itemsPerPage,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.rows;	
 				$scope.paginationConf.totalItems=response.total;//更新总记录数

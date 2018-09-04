@@ -257,3 +257,35 @@ CREATE TABLE `tb_item_cat` (
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1205 DEFAULT CHARSET=utf8 COMMENT='商品类目';
+
+
+CREATE TABLE `tb_item` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商品id，同时也是商品编号',
+  `title` varchar(100) NOT NULL COMMENT '商品标题',
+  `sell_point` varchar(500) DEFAULT NULL COMMENT '商品卖点',
+  `price` decimal(20,2) NOT NULL COMMENT '商品价格，单位为：元',
+  `stock_count` int(10) DEFAULT NULL,
+  `num` int(10) NOT NULL COMMENT '库存数量',
+  `barcode` varchar(30) DEFAULT NULL COMMENT '商品条形码',
+  `image` varchar(2000) DEFAULT NULL COMMENT '商品图片',
+  `categoryId` bigint(10) NOT NULL COMMENT '所属类目，叶子类目',
+  `status` varchar(1) NOT NULL COMMENT '商品状态，1-正常，2-下架，3-删除',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `item_sn` varchar(30) DEFAULT NULL,
+  `cost_pirce` decimal(10,2) DEFAULT NULL,
+  `market_price` decimal(10,2) DEFAULT NULL,
+  `is_default` varchar(1) DEFAULT NULL,
+  `goods_id` bigint(20) DEFAULT NULL,
+  `seller_id` varchar(30) DEFAULT NULL,
+  `cart_thumbnail` varchar(150) DEFAULT NULL,
+  `category` varchar(200) DEFAULT NULL,
+  `brand` varchar(100) DEFAULT NULL,
+  `spec` varchar(200) DEFAULT NULL,
+  `seller` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cid` (`categoryId`),
+  KEY `status` (`status`),
+  KEY `updated` (`update_time`)
+) ENGINE=InnoDB AUTO_INCREMENT=1369284 DEFAULT CHARSET=utf8 COMMENT='商品表';
+insert  into `tb_item`(`id`,`title`,`sell_point`,`price`,`stock_count`,`num`,`barcode`,`image`,`categoryId`,`status`,`create_time`,`update_time`,`item_sn`,`cost_pirce`,`market_price`,`is_default`,`goods_id`,`seller_id`,`cart_thumbnail`,`category`,`brand`,`spec`,`seller`) values (149187842867915,'new2 - 阿尔卡特 (OT-927) 炭黑 联通3G手机 双卡双待','清仓！仅北京，武汉仓有货！','299000.00',NULL,99999,'','http://img12.360buyimg.com/n1/s450x450_jfs/t3034/299/2060854617/119711/577e85cb/57d11b6cN1fd1194d.jpg',560,'1','2015-03-08 21:33:18','2015-04-11 20:38:38',NULL,NULL,NULL,NULL,1,'1',NULL,'手机','阿尔卡特','{\"机身内存\":\"16G\",\"网络\":\"联通3G\"}','阿尔卡特');

@@ -70,14 +70,16 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	}
 	
 	$scope.searchEntity={};
-	
-	// 假设定义一个查询的实体：searchEntity
-	$scope.searchByCondition = function(){
-		// 向后台发送请求获取数据:
-		brandService.search().success(function(response){
-            $scope.list = response;
-		});
-	}
+
+    //搜索
+    $scope.search=function(page){
+        brandService.search(page,$scope.paginationConf.itemsPerPage,$scope.searchEntity).success(
+            function(response){
+                $scope.list=response.rows;
+                $scope.paginationConf.totalItems=response.total;//更新总记录数
+            }
+        );
+    }
 
 
 });

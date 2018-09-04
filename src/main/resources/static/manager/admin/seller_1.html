@@ -40,14 +40,23 @@
                         <div class="table-box">
 
                             <!--工具栏-->
+							<div class="box-tools pull-right">
+								<div class="has-feedback">
+									公司名称：<input type="text" ng-model="searchEntity.name">
+									店铺名称： <input type="text" ng-model="searchEntity.nickName">
+									状态：<select ng-model="searchEntity.status">
+											<option value="">全部</option>
+											<option value="0">待审核</option>
+											<option value="1">已审核</option>
+											<option value="2">审核未通过</option>
+											<option value="3">关闭</option>
+								          </select>
+
+									<input class="btn btn-default" ng-click="search(1)" type="button" value="查询">
+								</div>
+							</div>
                             
-                            <div class="box-tools pull-right">
-                                <div class="has-feedback">
-							        公司名称：<input  >
-									店铺名称： <input  >									
-									<button class="btn btn-default" >查询</button>                                    
-                                </div>
-                            </div>
+
                             <!--工具栏/-->
 
 			                  <!--数据列表-->
@@ -164,15 +173,15 @@
 					<table class="table table-bordered table-striped" >
 				      	<tr>
 				      		<td>营业执照号</td>
-				      		<td>330106000109206</td>
+				      		<td>{{entity.licenseNumber}}</td>
 				      	</tr>
 				      	<tr>
 				      		<td>税务登记证号</td>
-				      		<td>0292039393011</td>
+				      		<td>{{entity.taxNumber}}</td>
 				      	</tr>
 				      	<tr>
 				      		<td>组织机构代码证号</td>
-				      		<td>22320320302421</td>
+				      		<td>{{entity.orgNumber}}</td>
 				      	</tr>				      	
 			     	</table>
 			    </div>
@@ -181,11 +190,11 @@
 					<table class="table table-bordered table-striped" >
 				      	<tr>
 				      		<td>法定代表人</td>
-				      		<td>王小聪</td>
+				      		<td>{{entity.legalPerson}}</td>
 				      	</tr>
 				      	<tr>
 				      		<td>法定代表人身份证号</td>
-				      		<td>211030198503223122</td>
+				      		<td>{{entity.legalPersonCardId}}</td>
 				      	</tr>					   			      	
 			     	</table>
 			    </div>
@@ -194,16 +203,13 @@
 					<table class="table table-bordered table-striped" >
 				      	<tr>
 				      		<td>开户行名称</td>
-				      		<td>中国建设银行北京市分行</td>
+				      		<td>{{entity.bankName}}</td>
 				      	</tr>
 				      	<tr>
 				      		<td>开户行支行</td>
-				      		<td>海淀支行</td>
+				      		<td>{{entity.bankUser}}</td>
 				      	</tr>		
-				      	<tr>
-				      		<td>银行账号</td>
-				      		<td>999000111222</td>
-				      	</tr>			   			      	
+
 			     	</table>					
 			    </div>
   			    </div> 			
