@@ -29,8 +29,12 @@
 
     <!-- id查商品  -->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-        select
-        from tb_item
+        select * from tb_item
         where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByLikeTitle" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select * from tb_item
+        where title LIKE concat("%",concat(#{title},"%"))
     </select>
 </mapper>

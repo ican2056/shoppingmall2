@@ -69,7 +69,17 @@
 								<!--searchAutoComplete-->
 								<div class="input-append">
 									<input type="text" id="autocomplete" class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+									<button class="sui-btn btn-xlarge btn-danger" type="button" onclick="toSearchHtml()">搜索</button>
+                                    <script type="text/javascript">
+                                        function toSearchHtml(){
+                                            var inputValue = document.getElementById("autocomplete").value;
+                                            /*if(inputValue==''){
+                                                inputValue="none";
+                                            }*/
+                                            alert(inputValue)
+                                            window.location.href="/search/toSearchHtml?searchKey="+inputValue;
+                                        }
+                                    </script>
 								</div>
 							</form>
 						</div>

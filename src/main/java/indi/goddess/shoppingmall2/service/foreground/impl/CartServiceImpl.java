@@ -27,11 +27,9 @@ public class CartServiceImpl implements CartService {
 		}
 		//2.根据SKU对象得到商家ID
 		String sellerId = item.getSellerId();//商家ID
-
-		Cart cart = cartList.get(0);
-		if(cart==null){
+		if(cartList.size()<=0){
 			//4.1 创建一个新的购物车对象
-			cart=new Cart();
+			Cart cart=new Cart();
 			cart.setSellerId(sellerId);//商家ID
 			cart.setSellerName(item.getSeller());//商家名称
 			List<TbOrderItem> orderItemList=new ArrayList();//创建购物车明细列表
@@ -41,6 +39,7 @@ public class CartServiceImpl implements CartService {
 			//4.2将新的购物车对象添加到购物车列表中
 			cartList.add(cart);
 		}else{
+			Cart cart=cartList.get(0);
 			// 判断该商品是否在该购物车的明细列表中存在
 			TbOrderItem orderItem = searchOrderItemByItemId(cart.getOrderItemList(),itemId);
 			if(orderItem==null){
